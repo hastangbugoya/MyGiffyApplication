@@ -11,3 +11,5 @@ Values: api_key
 ● Results should display: 
 ○ GIFs 
 ○ headline text 
+
+Using Kotlin, MVVM, Coroutine, Unit Tests, Retrofit, Glide. RecyclerView and CardView
