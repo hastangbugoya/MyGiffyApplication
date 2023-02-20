@@ -15,13 +15,17 @@ import java.io.IOException
 class GiphyViewModel : ViewModel() {
     var trends : MutableLiveData<List<Data>> = MutableLiveData<List<Data>>().apply { value = listOf() }
 
-    fun getAllTrends() {
+/*
+API only retrieves images rated G - even when tested from browser
+only the limit query field is functional
+*/
+    fun getAllTrends(limit : Int = 15) {
         viewModelScope.launch(Dispatchers.IO) {
             withTimeoutOrNull(30000) {
                 try {
                     trends.postValue(
                         async {
-                            MyRetrofit.getService().getTrends().body()?.data
+                            MyRetrofit.getService().getTrends(limit = limit).body()?.data
                         }.await()
                     )
                 } catch (e : IOException) {

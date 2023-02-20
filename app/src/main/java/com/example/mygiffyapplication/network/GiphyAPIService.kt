@@ -9,6 +9,7 @@ import retrofit2.http.Query
 interface GiphyAPIService {
     @GET("v1/gifs/trending")
     suspend fun getTrends(@Query("api_key") apiKey: String = BuildConfig.API_KEY,
-                          @Query("limit") limit: Int = 25,
+                          @Query("limit") limit: Int = 15,
                           @Query("rating") rating: String = "G") : Response<GiphyResponse>
+    // API only retrieves images rated G - even when tested from browser
 }
