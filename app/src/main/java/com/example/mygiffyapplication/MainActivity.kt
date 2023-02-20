@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mygiffyapplication.databinding.ActivityMainBinding
+import com.example.mygiffyapplication.utility.Logger.jLog
 import com.example.mygiffyapplication.view.GiphyRecyclerViewAdapter
 import com.example.mygiffyapplication.viewmodel.GiphyViewModel
 
@@ -31,19 +31,13 @@ class MainActivity : AppCompatActivity() {
         val myAdapter = GiphyRecyclerViewAdapter()
         myRecyclerView.adapter = myAdapter
 
-        Log.d("Meow", "Main Activity")
-
         binding.myCountSpinner.adapter = makeSpinnerAdapter()
 
         myViewModel.getAllTrends()
         myViewModel.trends.observe(this) {
             myAdapter.setData(it)
-            if (myViewModel.getTrendCount() == 0) {
-                binding.reload.visibility = View.VISIBLE
-            } else {
-                binding.reload.visibility = View.GONE
-            }
-            Log.d("Meow", "MainActivity loaded ${myViewModel.getTrendCount()} items")
+            binding.reload.visibility = getVisibility(myViewModel.getTrendCount())
+            jLog("MainActivity loaded ${myViewModel.getTrendCount()} items")
         }
 
         binding.refreshButton.setOnClickListener {
@@ -72,4 +66,9 @@ class MainActivity : AppCompatActivity() {
         ArrayAdapter(this, android.R.layout.simple_spinner_item, loadSize).apply {
             setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         }
+
+    fun getVisibility(count : Int) : Int {
+        if (count == 0) return 8
+        return 0
+    }
 }

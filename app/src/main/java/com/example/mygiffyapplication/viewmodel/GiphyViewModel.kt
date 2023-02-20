@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mygiffyapplication.data.Data
 import com.example.mygiffyapplication.network.MyRetrofit
+import com.example.mygiffyapplication.utility.Logger.jLog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -29,7 +30,7 @@ only the limit query field is functional
                         }.await()
                     )
                 } catch (e : IOException) {
-                    Log.d ("Meow", e.toString())
+                    jLog(e.toString())
                     trends.value = listOf()
                 }
             }
