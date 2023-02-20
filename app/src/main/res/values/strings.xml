@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MyGiffyApplication</string>
     <string name="main_refresh">Refresh</string>
+    <string name="try_again_later">Ooops! Something went wrong please try again later</string>
 </resources>
