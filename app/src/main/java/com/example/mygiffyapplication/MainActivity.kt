@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     fun getVisibility(count : Int) : Int {
-        if (count == 0) return 8
-        return 0
+        if (count == 0) return View.VISIBLE
+        return View.GONE
     }
 }
