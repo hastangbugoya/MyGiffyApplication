@@ -1,7 +1,6 @@
 package com.example.mygiffyapplication
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
@@ -31,13 +30,21 @@ class MainActivity : AppCompatActivity() {
         val myAdapter = GiphyRecyclerViewAdapter()
         myRecyclerView.adapter = myAdapter
 
-        binding.myCountSpinner.adapter = makeSpinnerAdapter()
+        binding.myCountSpinner.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            loadSize)
+            .apply {
+                setDropDownViewResource(
+                    android.R.layout.simple_spinner_dropdown_item
+                )
+            }
 
         myViewModel.getAllTrends()
         myViewModel.trends.observe(this) {
+            // updet apadpter list
             myAdapter.setData(it)
-            jLog("is empty ${it.isEmpty()}")
-            binding.reload.visibility = getVisibility(myViewModel.getTrendCount())
+
             jLog("MainActivity loaded ${myViewModel.getTrendCount()} items")
         }
 
@@ -61,18 +68,5 @@ class MainActivity : AppCompatActivity() {
                     // Do something when nothing is selected
                 }
             }
-    }
-
-    fun makeSpinnerAdapter() =
-        ArrayAdapter(this, android.R.layout.simple_spinner_item, loadSize).apply {
-            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        }
-
-    fun getVisibility(count : Int) : Int {
-        if (count > 0) {
-            return View.INVISIBLE
-        } else {
-            return View.VISIBLE
-        }
     }
 }

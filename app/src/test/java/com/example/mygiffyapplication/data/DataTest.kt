@@ -71,7 +71,7 @@ class DataTest {
             title = "title"
         )
         val data3 = Data(
-            title = "title"
+            title = "title2"
         )
         assertEquals(data1, data2)
         assertNotEquals(data1, data3)
