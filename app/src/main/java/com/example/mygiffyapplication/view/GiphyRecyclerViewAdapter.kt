@@ -27,6 +27,7 @@ class GiphyRecyclerViewAdapter : RecyclerView.Adapter<GiphyRecyclerViewAdapter.G
             trendHeader.text = dataList.get(position).title
             username.text = dataList.get(position).username.also {
                 if (it.isNullOrBlank()) username.visibility = View.GONE
+                else username.visibility = View.VISIBLE
             }
             Glide.with(holder.binding.root)
                 .applyDefaultRequestOptions(RequestOptions.fitCenterTransform())
