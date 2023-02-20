@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         myViewModel.getAllTrends()
         myViewModel.trends.observe(this) {
             myAdapter.setData(it)
+            jLog("is empty ${it.isEmpty()}")
             binding.reload.visibility = getVisibility(myViewModel.getTrendCount())
             jLog("MainActivity loaded ${myViewModel.getTrendCount()} items")
         }
@@ -68,7 +69,10 @@ class MainActivity : AppCompatActivity() {
         }
 
     fun getVisibility(count : Int) : Int {
-        if (count == 0) return View.VISIBLE
-        return View.GONE
+        if (count > 0) {
+            return View.INVISIBLE
+        } else {
+            return View.VISIBLE
+        }
     }
 }
