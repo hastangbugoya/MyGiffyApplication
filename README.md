@@ -12,4 +12,4 @@ Values: api_key
 ○ GIFs 
 ○ headline text 
 
-Using Kotlin, MVVM, Coroutine, Unit Tests, Retrofit, Glide. RecyclerView and CardView
+Using Kotlin, MVVM, Coroutine, Unit Tests, Retrofit, Glide, RecyclerView and CardView
