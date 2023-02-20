@@ -41,9 +41,14 @@ class MainActivity : AppCompatActivity() {
             }
 
         myViewModel.getAllTrends()
-        myViewModel.trends.observe(this) {
+        myViewModel.trends.observeForever() {
             // updet apadpter list
             myAdapter.setData(it)
+
+            if (myViewModel.getTrendCount() > 0)
+                binding.reload.visibility = View.INVISIBLE
+            else
+                binding.reload.visibility = View.VISIBLE
 
             jLog("MainActivity loaded ${myViewModel.getTrendCount()} items")
         }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyGiffyApplication</string>
+    <string name="main_refresh">Refresh</string>
 </resources>
