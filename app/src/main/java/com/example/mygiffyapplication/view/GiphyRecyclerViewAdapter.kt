@@ -1,7 +1,5 @@
 package com.example.mygiffyapplication.view
 
-import android.opengl.Visibility
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,18 +9,13 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.mygiffyapplication.R
 import com.example.mygiffyapplication.data.Data
 import com.example.mygiffyapplication.databinding.DataItemBinding
-import java.text.SimpleDateFormat
-import java.time.LocalDate
 
 class GiphyRecyclerViewAdapter : RecyclerView.Adapter<GiphyRecyclerViewAdapter.GiphyViewHolder>() {
-    var dataList = listOf<Data>()
+    private var dataList = listOf<Data>()
 
-    inner class GiphyViewHolder(binding: DataItemBinding ) : RecyclerView.ViewHolder(binding.root) {
-        var binding : DataItemBinding = binding
-    }
+    inner class GiphyViewHolder(var binding: DataItemBinding ) : RecyclerView.ViewHolder(binding.root)
 
     override fun onBindViewHolder(holder: GiphyViewHolder, position: Int) {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         holder.binding.apply {
             trendHeader.text = dataList.get(position).title
             username.text = dataList.get(position).username.also {
@@ -46,7 +39,7 @@ class GiphyRecyclerViewAdapter : RecyclerView.Adapter<GiphyRecyclerViewAdapter.G
         return dataList.size
     }
 
-    public fun setData (l : List<Data>) {
+    fun setData (l : List<Data>) {
         dataList = l
         notifyDataSetChanged()
     }

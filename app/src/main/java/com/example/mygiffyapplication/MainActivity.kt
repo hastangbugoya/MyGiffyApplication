@@ -41,10 +41,10 @@ class MainActivity : AppCompatActivity() {
             }
 
         myViewModel.getAllTrends()
-        myViewModel.trends.observeForever() {
-            // updet apadpter list
+        myViewModel.trends.observe(this) {
+            // update adapter list
             myAdapter.setData(it)
-
+            binding.reload.visibility = View.INVISIBLE
             if (myViewModel.getTrendCount() > 0)
                 binding.reload.visibility = View.INVISIBLE
             else
